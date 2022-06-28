@@ -52,7 +52,7 @@ jobs:
             PYTEST_ARGS: << parameters.pytest_args >>
           command: |
             cp .env.sample .env
-            PYTEST_ARGS make custom_check
+            PYTEST_ARGS=<< parameters.pytest_args >> make custom_check
 
   check:
     machine:
