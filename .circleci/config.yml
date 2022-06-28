@@ -29,8 +29,6 @@ jobs:
           environment:
             # (optional) print additional debug information
             MONOREPO_DEBUG: "true"
-            # (optional) additional CI parameters to include in the pipeline (must be a valid JSON)
-            CI_PARAMETERS: '{ "deploy": true }'
   test:
     parameters:
       pytest_args:
