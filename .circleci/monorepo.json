@@ -1,0 +1,8 @@
+{
+    "pages": 3,
+    "packages": {
+      "api": ["app/experimenter/base/"],
+      "docs": ["app/experimenter/docs/"],
+      "ui": ["app/experimenter/", "app/tests/integration/"]
+    }
+  }

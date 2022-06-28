@@ -1,5 +1,61 @@
 version: 2.1
+
+parameters:
+  # This parameter is used to trigger the main workflow
+  trigger:
+    type: boolean
+    default: true
+
+  # A parameter per package
+  api:
+    type: boolean
+    default: false
+  docs:
+    type: boolean
+    default: false
+  ui:
+    type: boolean
+    default: false
+
 jobs:
+  trigger-workflows:
+    docker: 
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: Trigger workflows
+          command: chmod +x .circleci/monorepo.sh && .circleci/monorepo.sh
+          environment:
+            # (optional) print additional debug information
+            MONOREPO_DEBUG: "true"
+            # (optional) additional CI parameters to include in the pipeline (must be a valid JSON)
+            CI_PARAMETERS: '{ "deploy": true }'
+  test:
+    parameters:
+      pytest_args:
+        type: string
+    machine:
+      image: ubuntu-2004:202107-02 # Ubuntu 20.04, Docker v20.10.7, Docker Compose v1.29.2
+      docker_layer_caching: true
+    resource_class: large
+    working_directory: ~/experimenter
+    steps:
+      - run:
+          name: Docker info
+          command: docker -v
+      - run:
+          name: Docker compose info
+          command: docker-compose -v
+      - checkout
+      - run:
+          name: Run tests and linting
+          environment:
+            PYTEST_ARGS: << parameters.pytest_args >>
+          command: |
+            cp .env.sample .env
+            PYTEST_ARGS make custom_check
+
   check:
     machine:
       image: ubuntu-2004:202107-02 # Ubuntu 20.04, Docker v20.10.7, Docker Compose v1.29.2
@@ -172,6 +228,20 @@ jobs:
 
 workflows:
   version: 2
+  ci:
+    when: << pipeline.parameters.trigger >>
+    jobs:
+      - trigger-workflows
+
+
+  # Workflows defined for each package.
+
+  api:
+    when: << pipeline.parameters.api >>
+    jobs:
+      - test:
+          name: test
+          pytest_args: -k pytest --cov --cov-report term-missing
   weekly:
     triggers:
       - schedule:
