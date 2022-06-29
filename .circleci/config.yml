@@ -239,11 +239,13 @@ workflows:
       - test:
           name: test
           circleci_args: pytest --cov --cov-report term-missing
+  docs:
     when: << pipeline.parameters.docs >>
     jobs:
       - test:
           name: docs
           circleci_args: python manage.py generate_docs --check=true
+  ui:
     when: << pipeline.parameters.ui >>
     jobs:
       - test:
