@@ -250,37 +250,37 @@ workflows:
     jobs:
       - build_firefox_versions
               
-  build:
-    jobs:
-      - check:
-          name: check
-      - integration_nimbus_desktop_release:
-          name: integration_nimbus_desktop_release
-          filters:
-            branches:
-              ignore:
-                - main
-      - integration_nimbus_desktop_beta:
-          name: integration_nimbus_desktop_beta
-          filters:
-            branches:
-              ignore:
-                - main
-      - integration_nimbus_desktop:
-          name: integration_nimbus_desktop
-          filters:
-            branches:
-              ignore:
-                - main
-      - integration_nimbus_sdk:
-          name: integration_nimbus_sdk
-          filters:
-            branches:
-              ignore:
-                - main
-      - deploy:
-          filters:
-            branches:
-              only: main
-          requires:
-           - check
+  # build:
+  #   jobs:
+  #     - check:
+  #         name: check
+  #     - integration_nimbus_desktop_release:
+  #         name: integration_nimbus_desktop_release
+  #         filters:
+  #           branches:
+  #             ignore:
+  #               - main
+  #     - integration_nimbus_desktop_beta:
+  #         name: integration_nimbus_desktop_beta
+  #         filters:
+  #           branches:
+  #             ignore:
+  #               - main
+  #     - integration_nimbus_desktop:
+  #         name: integration_nimbus_desktop
+  #         filters:
+  #           branches:
+  #             ignore:
+  #               - main
+  #     - integration_nimbus_sdk:
+  #         name: integration_nimbus_sdk
+  #         filters:
+  #           branches:
+  #             ignore:
+  #               - main
+  #     - deploy:
+  #         filters:
+  #           branches:
+  #             only: main
+  #         requires:
+  #          - check
