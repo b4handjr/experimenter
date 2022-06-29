@@ -238,7 +238,7 @@ workflows:
     jobs:
       - test:
           name: test
-          pytest_args: -k --cov --cov-report term-missing
+          circleci_args: pytest -k --cov --cov-report term-missing
   weekly:
     triggers:
       - schedule:
