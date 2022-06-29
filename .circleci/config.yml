@@ -49,10 +49,10 @@ jobs:
       - run:
           name: Run tests and linting
           environment:
-            PYTEST_ARGS: << parameters.pytest_args >>
+            PYTEST_ARGS: "<< parameters.pytest_args >>"
           command: |
             cp .env.sample .env
-            PYTEST_ARGS="<< parameters.pytest_args >>" make custom_check
+            PYTEST_ARGS=PYTEST_ARGS make custom_check
 
   check:
     machine:
