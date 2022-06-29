@@ -239,6 +239,12 @@ workflows:
       - test:
           name: test
           circleci_args: pytest --cov --cov-report term-missing
+      - docs:
+          name: test
+          circleci_args: python manage.py generate_docs --check=true
+      - ui:
+          name: test
+          circleci_args: yarn workspace @experimenter/nimbus-ui lint; yarn workspace @experimenter/nimbus-ui lint:tsc; CI=yes yarn workspace @experimenter/nimbus-ui test:cov
   weekly:
     triggers:
       - schedule:
