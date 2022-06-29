@@ -250,7 +250,10 @@ workflows:
     jobs:
       - test:
           name: ui
-          circleci_args: yarn workspace @experimenter/nimbus-ui lint; yarn workspace @experimenter/nimbus-ui lint:tsc; CI=yes yarn workspace @experimenter/nimbus-ui test:cov
+          circleci_args: |
+            yarn workspace @experimenter/nimbus-ui lint; 
+            yarn workspace @experimenter/nimbus-ui lint:tsc; 
+            CI=yes yarn workspace @experimenter/nimbus-ui test:cov
   weekly:
     triggers:
       - schedule:
