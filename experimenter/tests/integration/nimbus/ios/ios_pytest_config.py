@@ -6,13 +6,9 @@ import logging
 import os
 import subprocess
 
-import sys
 from pathlib import Path
 
 import pytest
-
-sys.path.append("../../")
-
 from SyncIntegrationTests.xcodebuild import XCodeBuild
 from SyncIntegrationTests.xcrun import XCRun
 
