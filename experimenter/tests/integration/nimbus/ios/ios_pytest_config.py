@@ -12,8 +12,8 @@ import pytest
 from SyncIntegrationTests.xcodebuild import XCodeBuild
 from SyncIntegrationTests.xcrun import XCRun
 
-here = Path(__file__)
 
+here = Path(__file__)
 
 @pytest.fixture(name="nimbus_cli_args")
 def fixture_nimbus_cli_args():
