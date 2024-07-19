@@ -445,7 +445,7 @@ jobs:
       - attach_workspace:
           at: /tmp/experimenter
       - run:
-          name: Clone Repo
+          name: Clone Firefox iOS Repo
           command: git clone https://github.com/mozilla-mobile/firefox-ios.git
       - run:
           name: Install nimbus-cli
