@@ -9,8 +9,6 @@ from nimbus.models.base_dataclass import BaseExperimentApplications
 from nimbus.pages.experimenter.summary import SummaryPage
 from nimbus.utils import helpers
 
-here = Path(__file__)
-
 
 @pytest.fixture
 def experiment_slug():
