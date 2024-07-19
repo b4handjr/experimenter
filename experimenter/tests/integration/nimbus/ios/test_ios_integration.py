@@ -46,7 +46,7 @@ def setup_experiment(experiment_slug, nimbus_cli_args):
     return _setup_experiment
 
 
-@pytest.mark.ios
+@pytest.mark.smoke
 def test_experiment_unenrolls_after_studies_toggle(
     xcodebuild, setup_experiment, start_app
 ):
