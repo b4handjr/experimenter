@@ -463,7 +463,7 @@ jobs:
           command: |
             cd firefox-ios/firefox-ios/firefox-ios-tests/Tests/ExperimentIntegrationTests
             export SIMULATOR_UDID=$(python get_specific_device_udid.py)
-            cp -f ~/experimenter/tests/integration/nimbus/ios/test_ios_integration.py ./
+            cp -f ~/project/experimenter/tests/integration/nimbus/ios/test_ios_integration.py ./
             poetry install
             poetry run pytest -k test_ios_integration.py
 
