@@ -436,6 +436,8 @@ jobs:
       xcode: 15.3.0
     steps:
       - checkout
+      - check_file_paths:
+          paths: "experimenter/"
       - macos/preboot-simulator:
           version: "17.4"
           platform: "iOS"
@@ -461,9 +463,7 @@ jobs:
           command: |
             cd firefox-ios/firefox-ios/firefox-ios-tests/Tests/ExperimentIntegrationTests
             export SIMULATOR_UDID=$(python get_specific_device_udid.py)
-            cp -f /Users/distiller/project/experimenter/tests/integration/nimbus/ios/ios_pytest_config.py ./
-            cp -f /Users/distiller/project/experimenter/tests/integration/nimbus/ios/test_ios_integration.py ./
-            mv ios_pytest_config.py conftest.py
+            cp -f ~/experimenter/tests/integration/nimbus/ios/test_ios_integration.py ./
             poetry install
             poetry run pytest -k test_ios_integration.py
 
